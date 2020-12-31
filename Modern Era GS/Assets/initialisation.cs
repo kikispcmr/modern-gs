@@ -7,16 +7,15 @@ public class initialisation : MonoBehaviour
     //temp
     int numberOfPops = 10;
 
-    public List<pops> currentNumPops = new List<pops>();
+    public List<GameObject> currentNumPops = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
         for(int i = 0; i <= numberOfPops; i++)
         {
-            GameObject pop1 = new GameObject().;
-            pops pop = pop1.AddComponent<pops>();
-            //currentNumPops.Add(new pops("labourer"));
-            pop.set_speciality("labourer");
+
+            GameObject pop = new GameObject();
+            pop.AddComponent<pops>();
             currentNumPops.Add(pop);
         }
     }

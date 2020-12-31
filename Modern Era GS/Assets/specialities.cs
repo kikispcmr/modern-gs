@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class specialities : MonoBehaviour
+[CreateAssetMenu(fileName = "blank", menuName = "Speciality")]
+public class specialities : ScriptableObject
 {
-    public string speciality;
-
-    public void set_speciality(string spec)
-    {
-        speciality = spec;
-    }
+    public string speciality_Name;
+    public int baseIncome;
 
 }

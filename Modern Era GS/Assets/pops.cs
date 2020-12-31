@@ -5,17 +5,32 @@ using UnityEngine;
 
 public class pops : MonoBehaviour
 {
-    float income;
-    // Start is called before the first frame update
+    public float income = 10f;
+    public float currentWealth = 0f;
+    public int happiness = 0;
+    
+    // public ScriptableObject speciality;
 
-    specialities speciality;
-
-    //temp
-    //string chosenSpec = "labourer";
-
-    public void set_speciality(string chosenSpec)
+     void FixedUpdate()
     {
-        speciality = gameObject.GetComponent<specialities>();
-        speciality.set_speciality("labourer");
+        updateWealth();
+        consumerismCheck();
+    }
+
+
+    public void updateWealth()
+    {
+        currentWealth += income / (Time.deltaTime*10);
+    }
+
+    public void consumerismCheck()
+    {
+       if (currentWealth >= 10000)
+        {
+            if(Random.Range(0,10) >= 5 )
+            {
+                currentWealth -= Random.Range(1000, 9000);
+            }
+        }
     }
 }
