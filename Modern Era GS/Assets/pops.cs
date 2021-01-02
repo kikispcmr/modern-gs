@@ -8,6 +8,9 @@ public class pops : MonoBehaviour
     public float income = 10f;
     public float currentWealth = 0f;
     public int happiness = 0;
+    public string countryOfOrigin;
+    int consumerism;
+    GameObject main;
     
     // public ScriptableObject speciality;
 
@@ -29,8 +32,17 @@ public class pops : MonoBehaviour
         {
             if(Random.Range(0,10) >= 5 )
             {
-                currentWealth -= Random.Range(1000, 9000);
+                consumerism = Random.Range(1000, 9000);
+                currentWealth -= consumerism;
+                shareToEconomy(consumerism);
             }
         }
+    }
+
+    public void shareToEconomy(int consm)
+    {
+        main = GameObject.Find("Brain");
+        economy econ = main.GetComponent<economy>();
+        econ.add_consumerism(consm);
     }
 }

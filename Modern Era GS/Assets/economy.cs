@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class economy : MonoBehaviour
 {
-    float gdp;
+    public float gdp;
+    float consumerism;
 
-    float consumer_consumption;
+    public float consumer_consumption;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,12 +17,15 @@ public class economy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        calculate_gdp(consumer_consumption, 1, 1, 1, 1);
+    }
+    public void add_consumerism(int consm)
+    {
+        consumer_consumption += consm;
     }
 
-    float calculate_gdp(float consumer_consumption, float invesetment, float government_spending, float exports, float imports)
+    void calculate_gdp(float consumer_consumption, float invesetment, float government_spending, float exports, float imports)
     {
-
-        return 0.1f;
+        gdp += consumer_consumption;
     }
 }
