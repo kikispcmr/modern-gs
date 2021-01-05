@@ -29,7 +29,7 @@ public class provinceLoader : MonoBehaviour
 
     
 
-    Dictionary<Color, provinces> provincesDic = new Dictionary<Color, provinces>();
+      Dictionary<Color, provinces> provincesDic = new Dictionary<Color, provinces>();
 
 // Start is called before the first frame update
 void Start()
@@ -44,22 +44,24 @@ void LoadXML()
 
     foreach (var item in items)
     {
-        /* if (item.Parent.Attribute("").Value == iteration.ToString())
+        if (item.Parent.Attribute("provID").Value == iteration.ToString())
         {
-            pageNum = int.Parse(item.Parent.Attribute(“number”).Value); charText = item.Parent.Element(“name”).Value.Trim(); dialogueText = item.Parent.Element(“dialogue”).Value.Trim();
+            provID = int.Parse(item.Parent.Attribute(“number”).Value);
+            name = item.Parent.Element(“name”).Value.Trim(); 
+            rgb = item.Parent.Element(“rgb”).Value.Trim();
 
-            /*Create a new Index in the List, which will be a new XMLData object and pass the previously assigned variables as arguments so they get assigned to the new object’s variables.
+            /*Create a new Index in the List, which will be a new XMLData object and pass the previously assigned variables as arguments so they get assigned to the new object’s variables.*/
 
             
         }
-        data.Add(new XMLData(pageNum, charText, dialogueText));
+        data.Add(new XMLData(provID, name, rgb));
 
 
-        /*To test and make sure the data has been applied to properly, print out the musicClip name from the data list’s current index. This will let us know if the objects in the list have been created successfully and if their variables have been assigned the right values.
+        /*To test and make sure the data has been applied to properly, print out the musicClip name from the data list’s current index. This will let us know if the objects in the list have been created successfully and if their variables have been assigned the right values.*/
 
         
 
-        Debug.Log(data[iteration].dialogueText); */
+        Debug.Log(data[iteration].dialogueText); 
 
         iteration++; //increment the iteration by 1
     }
