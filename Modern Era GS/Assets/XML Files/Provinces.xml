@@ -1,8 +1,0 @@
-<?xml version=”1.0″>
-<provinces title="Map Provinces">
-  <province>
-    <name>Blue Province</name>
-    <rgb>0,0,0</rgb>
-    <provID>001</provID>
-  </province>
- </provinces>

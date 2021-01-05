@@ -1,0 +1,12 @@
+<provinces title="Map Provinces">
+  <province>
+    <name>Greentopia</name>
+    <rgb>112,255,99</rgb>
+    <provID>1</provID>
+  </province>
+  <province>
+    <name>Redtopia</name>
+    <rgb>255,81,,87</rgb>
+    <provID>2</provID>
+  </province>
+ </provinces>
