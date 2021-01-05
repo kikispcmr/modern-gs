@@ -23,29 +23,48 @@ public class provinceLoader : MonoBehaviour
 
 
 
-    public Dictionary<string, provinces> provincesDic = new Dictionary<string, provinces>();
+    public Dictionary<Color, provinces> provincesDic = new Dictionary<Color, provinces>();
 
     void Start()
     {
-        int i;
-        TextAsset txtXmlAsset = Resources.Load<TextAsset>("provinces");
+        xmlReader();
+
+    }
+
+    void xmlReader()
+    {
+        TextAsset txtXmlAsset = Resources.Load<TextAsset>("Provinces");
         var doc = XDocument.Parse(txtXmlAsset.text);
 
-        var allDict = doc.Element("provinces").Elements("provID");
-        foreach(var oneDict in allDict)
+        var allDict = doc.Element("provinces").Elements("province");
+
+        foreach (var oneDict in allDict)
         {
-            var provinceName = oneDict.Elements("name");
-            var provinceColor = oneDict.Elements("rgb");
-            var provID = oneDict.Elements("provID");
+            var provinceName = oneDict.Element("name");
+            var provinceColor = oneDict.Element("rgb");
+            var provinceID = oneDict.Element("provID");
 
-            string first = provinceName.ToString();
-            string second = provinceColor.ToString();
-            int third = int.Parse(provID.ToString());
+            string provName = provinceName.ToString().Replace("<name>", "").Replace("</name>", "");
+            string provColor = provinceColor.ToString().Replace("<rgb>", "").Replace("</rgb>", "");
+            int provID = int.Parse(provinceID.ToString().Replace("<provID>", "").Replace("</provID>", ""));
 
-            provincesDic.Add(first, new provinces(third, second));
-            Debug.Log("Succesfully ran");
-            Debug.Log("Province at " + provincesDic["112,255,99"]);
+            provinces currentProvince = new provinces(provID, provName);
+            
+            provincesDic.Add(calculateColor(provColor), currentProvince);
+
+
+
+            Debug.Log("For loop succesfully ran");
+            Debug.Log("Province at " + provincesDic[new Color(112/255,255/255,99/255)]);
         }
+        Debug.Log("Succesfully ran");
+    }
+
+    Color calculateColor(string pseudoColor)
+    {
+        string[] rgb = pseudoColor.Split(',');
+        Color actualColor = new Color(float.Parse(rgb[0])/255, float.Parse(rgb[1])/255, float.Parse(rgb[2])/255);
+        return actualColor;
     }
 
 }
