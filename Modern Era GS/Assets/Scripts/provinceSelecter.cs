@@ -11,8 +11,11 @@ public class provinceSelecter : MonoBehaviour
     activate shader around that color
     */
     RaycastHit hit;
-    public Texture2D mainMap;
+    public Texture2D selectionMap;
+    public GameObject map;
+
     provinceLoader prov;
+    public Shader sha;
 
     // Start is called before the first frame update
     void Start()
@@ -29,10 +32,10 @@ public class provinceSelecter : MonoBehaviour
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
                 {
                 Vector2 hitpoint = hit.textureCoord;
-                hitpoint.x *= mainMap.width;
-                hitpoint.y *= mainMap.height;
+                hitpoint.x *= selectionMap.width;
+                hitpoint.y *= selectionMap.height;
 
-                Color currentCol = mainMap.GetPixel((int)hitpoint.x, (int)hitpoint.y);
+                Color currentCol = selectionMap.GetPixel((int)hitpoint.x, (int)hitpoint.y);
 
                 //compare colors
                foreach(var prv in prov.provincesDic)
@@ -40,6 +43,9 @@ public class provinceSelecter : MonoBehaviour
                     if(prv.Key == currentCol)
                     {
                         Debug.Log("Found province: " + prv.Value);
+                        //Fun
+                        provinceHighlight hgh = map.GetComponent<provinceHighlight>();
+                        hgh.highlightProvince(prv.Key);
                         break;
                     }
                     else
